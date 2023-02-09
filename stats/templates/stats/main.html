@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block scripts %}
+{% endblock scripts %}
+
+{% block content %}
+    {% if qs %}
+    <ul>
+        {% for el in qs %}
+        <li> <a href="{{el.get_absolute_url}}">{{el.name}}</a></li>
+        <li> <a href="{% url 'stats:dashboard' el.slug %}">{{el.name}}</a></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+{% endblock content %}
