@@ -1,6 +1,8 @@
 console.log("Hello world")
 
-const socket  = new WebSocket('ws://' + window.location.host + '/ws/test-stat/')
+const dashboardSlug = document.getElementById("dashboard-slug").textContent.trim()
+console.log(dashboardSlug)
+const socket  = new WebSocket(`ws://${window.location.host}/ws/${dashboardSlug}/`)
 console.log(socket)
 
 socket.onmessage = function(e) {
@@ -10,5 +12,6 @@ socket.onmessage = function(e) {
 socket.onopen = function(e) {
     socket.send(JSON.stringify({
         'message': 'Hello from client',
+        'sender': 'Test sender',
     }));
 }
